@@ -1,0 +1,26 @@
+from win10toast import ToastNotifier
+import time
+import psutil
+
+print('start running...')
+while True:
+    battery=psutil.sensors_battery()
+    percent=battery.percent
+
+    if percent<20:
+        toast=ToastNotifier()
+        toast.show_toast(
+            'battery',
+            'battery less than 20% please charge ',
+            duration=30
+        )
+    elif percent>90:
+        toast=ToastNotifier()
+        toast.show_toast(
+            'battery',
+            'battery more than 90  % please take it off ',
+            duration=30
+        )
+    
+    print('its working')
+    time.sleep(60*5)
